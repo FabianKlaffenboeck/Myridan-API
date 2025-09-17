@@ -1,7 +1,7 @@
 package routes
 
-import at.eWolveLabs.development.sampleShelfs
-import at.eWolveLabs.model.Shelf
+import com.dynaHowl.myridan.development.sampleShelfs
+import com.dynaHowl.myridan.model.Shelf
 import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.http.*

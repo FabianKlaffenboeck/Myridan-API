@@ -1,9 +1,7 @@
 package routes
 
-import at.eWolveLabs.development.sampleFootprints
-import at.eWolveLabs.development.sampleManufacturers
-import at.eWolveLabs.model.Footprint
-import at.eWolveLabs.model.Manufacturer
+import com.dynaHowl.myridan.development.sampleManufacturers
+import com.dynaHowl.myridan.model.Manufacturer
 import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.http.*

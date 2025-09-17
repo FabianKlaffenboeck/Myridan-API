@@ -1,7 +1,7 @@
 package routes
 
-import at.eWolveLabs.development.samplePartTypes
-import at.eWolveLabs.model.PartType
+import com.dynaHowl.myridan.development.samplePartTypes
+import com.dynaHowl.myridan.model.PartType
 import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.http.*
