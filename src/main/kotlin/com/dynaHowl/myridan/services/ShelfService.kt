@@ -13,11 +13,11 @@ class ShelfService {
 
     fun getAll(): List<Shelf> = transaction {
         val query = Op.build { Shelfs.deletedAt.isNull() }
-        ShelfEntity.Companion.find(query).map(ShelfEntity::toShelf)
+        ShelfEntity.find(query).map(ShelfEntity::toShelf)
     }
 
     fun getById(id: Int): Shelf? = transaction {
-        ShelfEntity.Companion.find {
+        ShelfEntity.find {
             Shelfs.id eq id
         }.firstOrNull()?.toShelf()
     }
@@ -25,15 +25,15 @@ class ShelfService {
     fun add(shelf: Shelf): Shelf = transaction {
 
         for (i in 0..shelf.trays.size - 1) {
-            if (TrayEntity.Companion.findById(shelf.trays[i].id ?: 0) == null) {
+            if (TrayEntity.findById(shelf.trays[i].id ?: 0) == null) {
                 shelf.trays[i].id = TrayService().add(shelf.trays[i]).id
             }
         }
 
-        ShelfEntity.Companion.new {
+        ShelfEntity.new {
             name = shelf.name
             trays = SizedCollection(shelf.trays.map {
-                TrayEntity.Companion.findById(it.id ?: 0)!!
+                TrayEntity.findById(it.id ?: 0)!!
             })
 
             updatedAt = LocalDateTime.now()
@@ -43,16 +43,16 @@ class ShelfService {
     fun update(shelf: Shelf): Shelf = transaction {
         val notNullId = shelf.id ?: -1
 
-        ShelfEntity.Companion[notNullId].name = shelf.name
-        ShelfEntity.Companion[notNullId].trays = SizedCollection(shelf.trays.map {
-            TrayEntity.Companion.findById(it.id ?: 0)!!
+        ShelfEntity[notNullId].name = shelf.name
+        ShelfEntity[notNullId].trays = SizedCollection(shelf.trays.map {
+            TrayEntity.findById(it.id ?: 0)!!
         })
 
-        ShelfEntity.Companion[notNullId].updatedAt = LocalDateTime.now()
-        ShelfEntity.Companion[notNullId].toShelf()
+        ShelfEntity[notNullId].updatedAt = LocalDateTime.now()
+        ShelfEntity[notNullId].toShelf()
     }
 
     fun delete(id: Int) = transaction {
-        ShelfEntity.Companion[id].deletedAt = LocalDateTime.now()
+        ShelfEntity[id].deletedAt = LocalDateTime.now()
     }
 }

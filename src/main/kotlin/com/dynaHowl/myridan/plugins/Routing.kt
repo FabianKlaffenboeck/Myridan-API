@@ -1,21 +1,7 @@
 package com.dynaHowl.myridan.plugins
 
-import com.dynaHowl.myridan.routes.electricalUnitRoute
-import com.dynaHowl.myridan.routes.footprintRoute
-import com.dynaHowl.myridan.routes.loginRoute
-import com.dynaHowl.myridan.routes.manufacturerRoute
-import com.dynaHowl.myridan.routes.partRoute
-import com.dynaHowl.myridan.routes.partTypeRoute
-import com.dynaHowl.myridan.routes.registerRoute
-import com.dynaHowl.myridan.routes.shelfRoute
-import com.dynaHowl.myridan.routes.trayRoute
-import com.dynaHowl.myridan.services.FootprintService
-import com.dynaHowl.myridan.services.ManufacturerService
-import com.dynaHowl.myridan.services.PartService
-import com.dynaHowl.myridan.services.PartTypeService
-import com.dynaHowl.myridan.services.ShelfService
-import com.dynaHowl.myridan.services.TrayService
-import com.dynaHowl.myridan.services.UserService
+import com.dynaHowl.myridan.routes.*
+import com.dynaHowl.myridan.services.*
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.auth.*

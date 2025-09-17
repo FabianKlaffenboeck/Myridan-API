@@ -10,24 +10,24 @@ import java.time.LocalDateTime
 class UserService {
 
     fun getAll(): List<User> = transaction {
-        val query = Op.Companion.build { Users.deletedAt.isNull() }
-        UserEntity.Companion.find(query).map(UserEntity::toUser)
+        val query = Op.build { Users.deletedAt.isNull() }
+        UserEntity.find(query).map(UserEntity::toUser)
     }
 
     fun getById(id: Int): User? = transaction {
-        UserEntity.Companion.find {
+        UserEntity.find {
             Users.id eq id
         }.firstOrNull()?.toUser()
     }
 
     fun getByUsername(username: String): User? = transaction {
-        UserEntity.Companion.find {
+        UserEntity.find {
             Users.username eq username
         }.firstOrNull()?.toUser()
     }
 
     fun add(user: User): User = transaction {
-        UserEntity.Companion.new {
+        UserEntity.new {
             username = user.username
             passwordHash = user.passwordHash
 
@@ -38,14 +38,14 @@ class UserService {
     fun update(user: User): User = transaction {
         val notNullId = user.id ?: -1
 
-        UserEntity.Companion[notNullId].username = user.username
-        UserEntity.Companion[notNullId].passwordHash = user.passwordHash
+        UserEntity[notNullId].username = user.username
+        UserEntity[notNullId].passwordHash = user.passwordHash
 
-        UserEntity.Companion[notNullId].updatedAt = LocalDateTime.now()
-        UserEntity.Companion[notNullId].toUser()
+        UserEntity[notNullId].updatedAt = LocalDateTime.now()
+        UserEntity[notNullId].toUser()
     }
 
     fun delete(id: Int) = transaction {
-        UserEntity.Companion[id].deletedAt = LocalDateTime.now()
+        UserEntity[id].deletedAt = LocalDateTime.now()
     }
 }

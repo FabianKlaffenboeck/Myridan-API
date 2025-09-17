@@ -7,7 +7,6 @@ import com.dynaHowl.myridan.plugins.configureSecurity
 import com.dynaHowl.myridan.plugins.configureSerialization
 import com.dynaHowl.myridan.plugins.loadJwtConfig
 import io.ktor.server.application.*
-import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 
 fun main(args: Array<String>) {

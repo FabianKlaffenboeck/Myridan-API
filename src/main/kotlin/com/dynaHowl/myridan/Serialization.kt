@@ -1,6 +1,6 @@
 package com.dynaHowl.myridan
 
-import com.fasterxml.jackson.databind.*
+import com.fasterxml.jackson.databind.SerializationFeature
 import io.ktor.serialization.gson.*
 import io.ktor.serialization.jackson.*
 import io.ktor.server.application.*

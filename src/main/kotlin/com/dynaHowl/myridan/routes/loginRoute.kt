@@ -1,10 +1,10 @@
 package com.dynaHowl.myridan.routes
 
+import com.auth0.jwt.JWT
+import com.auth0.jwt.algorithms.Algorithm
 import com.dynaHowl.myridan.plugins.JwtConfig
 import com.dynaHowl.myridan.services.PasswordHasher
 import com.dynaHowl.myridan.services.UserService
-import com.auth0.jwt.JWT
-import com.auth0.jwt.algorithms.Algorithm
 import io.ktor.http.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
@@ -18,11 +18,7 @@ fun Route.loginRoute(jwtConfig: JwtConfig, userService: UserService) {
 
             val req = call.receive<LoginRequest>()
 
-            val user = userService.getByUsername(req.username)
-
-            if (user == null) {
-                return@post call.respond(HttpStatusCode.Unauthorized)
-            }
+            val user = userService.getByUsername(req.username) ?: return@post call.respond(HttpStatusCode.Unauthorized)
 
             if (!PasswordHasher.verify(req.password, user.passwordHash)) {
                 return@post call.respond(HttpStatusCode.Unauthorized)

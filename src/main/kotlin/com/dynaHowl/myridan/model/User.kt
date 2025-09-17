@@ -8,8 +8,6 @@ import org.jetbrains.exposed.dao.id.IntIdTable
 import org.jetbrains.exposed.sql.javatime.datetime
 
 
-
-
 object Users : IntIdTable("Users") {
     val username = varchar("username", 50).uniqueIndex()
     val passwordHash = varchar("password_hash", 64)

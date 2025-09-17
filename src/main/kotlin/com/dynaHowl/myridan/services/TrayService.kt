@@ -11,17 +11,17 @@ class TrayService {
 
     fun getAll(): List<Tray> = transaction {
         val query = Op.build { Trays.deletedAt.isNull() }
-        TrayEntity.Companion.find(query).map(TrayEntity::toTray)
+        TrayEntity.find(query).map(TrayEntity::toTray)
     }
 
     fun getById(id: Int): Tray? = transaction {
-        TrayEntity.Companion.find {
+        TrayEntity.find {
             Trays.id eq id
         }.firstOrNull()?.toTray()
     }
 
     fun add(tray: Tray): Tray = transaction {
-        TrayEntity.Companion.new {
+        TrayEntity.new {
             name = tray.name
 
             updatedAt = LocalDateTime.now()
@@ -31,13 +31,13 @@ class TrayService {
     fun update(tray: Tray): Tray = transaction {
         val notNullId = tray.id ?: -1
 
-        TrayEntity.Companion[notNullId].name = tray.name
+        TrayEntity[notNullId].name = tray.name
 
-        TrayEntity.Companion[notNullId].updatedAt = LocalDateTime.now()
-        TrayEntity.Companion[notNullId].toTray()
+        TrayEntity[notNullId].updatedAt = LocalDateTime.now()
+        TrayEntity[notNullId].toTray()
     }
 
     fun delete(id: Int) = transaction {
-        TrayEntity.Companion[id].deletedAt = LocalDateTime.now()
+        TrayEntity[id].deletedAt = LocalDateTime.now()
     }
 }

@@ -1,27 +1,8 @@
 package com.dynaHowl.myridan.plugins
 
-import com.dynaHowl.myridan.development.sampleFootprints
-import com.dynaHowl.myridan.development.sampleManufacturers
-import com.dynaHowl.myridan.development.samplePartTypes
-import com.dynaHowl.myridan.development.sampleParts
-import com.dynaHowl.myridan.development.sampleShelfs
-import com.dynaHowl.myridan.development.sampleTrays
-import com.dynaHowl.myridan.development.sampleUsers
-import com.dynaHowl.myridan.model.Footprints
-import com.dynaHowl.myridan.model.Manufacturers
-import com.dynaHowl.myridan.model.PartTypes
-import com.dynaHowl.myridan.model.Parts
-import com.dynaHowl.myridan.model.ShelfTrays
-import com.dynaHowl.myridan.model.Shelfs
-import com.dynaHowl.myridan.model.Trays
-import com.dynaHowl.myridan.model.Users
-import com.dynaHowl.myridan.services.FootprintService
-import com.dynaHowl.myridan.services.ManufacturerService
-import com.dynaHowl.myridan.services.PartService
-import com.dynaHowl.myridan.services.PartTypeService
-import com.dynaHowl.myridan.services.ShelfService
-import com.dynaHowl.myridan.services.TrayService
-import com.dynaHowl.myridan.services.UserService
+import com.dynaHowl.myridan.development.*
+import com.dynaHowl.myridan.model.*
+import com.dynaHowl.myridan.services.*
 import io.ktor.server.application.*
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils
@@ -33,7 +14,7 @@ fun Application.configureDatabases(
     dbUrl: String, dbUser: String, dbPW: String, updateSchema: Boolean, initDB: Boolean, populateDB: Boolean
 ) {
 
-    val database = Database.connect(url = dbUrl, user = dbUser, password = dbPW)
+    Database.connect(url = dbUrl, user = dbUser, password = dbPW)
 
     if (initDB) {
         initDB()

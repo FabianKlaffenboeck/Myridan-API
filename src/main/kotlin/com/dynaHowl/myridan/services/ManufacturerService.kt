@@ -11,17 +11,17 @@ class ManufacturerService {
 
     fun getAll(): List<Manufacturer> = transaction {
         val query = Op.build { Manufacturers.deletedAt.isNull() }
-        ManufacturerEntity.Companion.find(query).map(ManufacturerEntity::toManufacturer)
+        ManufacturerEntity.find(query).map(ManufacturerEntity::toManufacturer)
     }
 
     fun getById(id: Int): Manufacturer? = transaction {
-        ManufacturerEntity.Companion.find {
+        ManufacturerEntity.find {
             Manufacturers.id eq id
         }.firstOrNull()?.toManufacturer()
     }
 
     fun add(manufacturer: Manufacturer): Manufacturer = transaction {
-        ManufacturerEntity.Companion.new {
+        ManufacturerEntity.new {
             name = manufacturer.name
 
             updatedAt = LocalDateTime.now()

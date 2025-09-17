@@ -11,17 +11,17 @@ class FootprintService {
 
     fun getAll(): List<Footprint> = transaction {
         val query = Op.build { Footprints.deletedAt.isNull() }
-        FootprintEntity.Companion.find(query).map(FootprintEntity::toFootprint)
+        FootprintEntity.find(query).map(FootprintEntity::toFootprint)
     }
 
     fun getById(id: Int): Footprint? = transaction {
-        FootprintEntity.Companion.find {
+        FootprintEntity.find {
             Footprints.id eq id
         }.firstOrNull()?.toFootprint()
     }
 
     fun add(footprint: Footprint): Footprint = transaction {
-        FootprintEntity.Companion.new {
+        FootprintEntity.new {
             metric = footprint.metric
             imperial = footprint.imperial
 

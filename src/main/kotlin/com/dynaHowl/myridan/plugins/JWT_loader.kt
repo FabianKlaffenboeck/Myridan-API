@@ -1,6 +1,6 @@
 package com.dynaHowl.myridan.plugins
 
-import io.ktor.server.application.Application
+import io.ktor.server.application.*
 
 data class JwtConfig(
     val domain: String,
