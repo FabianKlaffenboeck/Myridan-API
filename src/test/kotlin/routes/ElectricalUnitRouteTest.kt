@@ -1,6 +1,6 @@
 package routes
 
-import at.eWolveLabs.model.ElectricalUnit
+import com.dynaHowl.myridan.model.ElectricalUnit
 import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.http.*
