@@ -18,6 +18,13 @@ fun Application.configureRouting(jwtConfig: JwtConfig) {
         }
     }
     val userService = UserService()
+    val manufacturerService = ManufacturerService()
+    val partService = PartService()
+    val partTypeService = PartTypeService()
+    val shelfService = ShelfService()
+    val trayService = TrayService()
+    val footprintService = FootprintService()
+
 
     routing {
         route("/api") {
@@ -28,12 +35,12 @@ fun Application.configureRouting(jwtConfig: JwtConfig) {
                 openAPI(path = "openapi")
                 swaggerUI(path = "swaggerui")
 
-                manufacturerRoute(ManufacturerService())
-                partRoute(PartService())
-                partTypeRoute(PartTypeService())
-                shelfRoute(ShelfService())
-                trayRoute(TrayService())
-                footprintRoute(FootprintService())
+                manufacturerRoute(manufacturerService)
+                partRoute(partService)
+                partTypeRoute(partTypeService)
+                shelfRoute(shelfService)
+                trayRoute(trayService)
+                footprintRoute(footprintService)
                 electricalUnitRoute()
             }
         }

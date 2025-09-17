@@ -12,6 +12,9 @@ fun Route.trayRoute(trayService: TrayService) {
         get {
             call.respond(trayService.getAll())
         }
+        get("/empty") {
+            call.respond(trayService.getAllEmpty())
+        }
         get("{id}") {
             val id: Int = (call.parameters["id"] ?: return@get call.respond(HttpStatusCode.BadRequest)).toInt()
             val tray = trayService.getById(id) ?: return@get call.respond(HttpStatusCode.NotFound)
